@@ -1,0 +1,164 @@
+{# base.html #}
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Site Metas -->
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>Swati Creation - {% block title %}{% endblock %}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    <!-- Responsive style -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}" />
+</head>
+
+<body>
+    <!-- Header section -->
+    <header class="header_section innerpage_header">
+      <div class="container-fluid">
+          <nav class="navbar navbar-expand-lg custom_nav-container">
+              <a class="navbar-brand" href="{{ url_for('index') }}">
+                  <span>Swati Creation</span>
+              </a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                  <ul class="navbar-nav ml-auto">
+                      <!-- Home link accessible to all users -->
+                      <li class="nav-item">
+                          <a class="nav-link" href="{{ url_for('index') }}">Home</a>
+                      </li>
+                      
+                      <!-- Check if the user is authenticated -->
+                      {% if current_user.is_authenticated %}
+                          {% if current_user.is_admin %}
+                              <!-- Admin-specific navigation -->
+                              <li class="nav-item">
+                                  <a class="nav-link" href="{{ url_for('admin_dashboard') }}">Admin Dashboard</a>
+                              </li>
+                          {% else %}
+                              <!-- Regular user navigation -->
+                              <li class="nav-item">
+                                  <a class="nav-link" href="{{ url_for('user_dashboard') }}">My Dashboard</a>
+                              </li>
+                              <li class="nav-item">
+                                  <a class="nav-link" href="{{ url_for('my_cart') }}">Cart</a>
+                              </li>
+                          {% endif %}
+                          <!-- Logout option for authenticated users -->
+                          <li class="nav-item">
+                              <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+                          </li>
+                      {% else %}
+                          <!-- Navigation for unauthenticated users -->
+                          <li class="nav-item">
+                              <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="{{ url_for('signup') }}">Sign Up</a>
+                          </li>
+                      {% endif %}
+                  </ul>
+              </div>
+          </nav>
+      </div>
+  </header>
+  
+    <!-- End header section -->
+
+    <!-- Main content -->
+    <main>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul class="flashes">
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </main>
+
+    <section class="info_section layout_padding2">
+      <div class="container">
+          <!-- Email Subscription Form and Social Links -->
+          <div class="row info_form_social_row">
+              <div class="col-md-4 col-lg-3">
+                  <div class="social_box">
+                      <a href="https://www.facebook.com/SwatiCreation" target="_blank" aria-label="Facebook">
+                          <i class="fa fa-facebook" aria-hidden="true"></i>
+                      </a>
+                      <a href="https://twitter.com/SwatiCreation" target="_blank" aria-label="Twitter">
+                          <i class="fa fa-twitter" aria-hidden="true"></i>
+                      </a>
+                      <a href="https://www.instagram.com/SwatiCreation" target="_blank" aria-label="Instagram">
+                          <i class="fa fa-instagram" aria-hidden="true"></i>
+                      </a>
+                  </div>
+              </div>
+          </div>
+  
+          <!-- About Us and Contact Information -->
+          <div class="row info_main_row">
+              <div class="col-md-6 col-lg-3">
+                  <div class="info_detail">
+                      <h4>About Us</h4>
+                      <p>Discover our exquisite collection of handcrafted art jewellery, where each piece tells a unique story of creativity and craftsmanship.</p>
+                  </div>
+              </div>
+              <div class="col-md-6 col-lg-3">
+                  <h4>Contact Us</h4>
+                  <div class="info_contact">
+                      <a href="https://maps.app.goo.gl/z6VEJcNDkUcg6mWq5" target="_blank" aria-label="Location">
+                          <i class="fa fa-map-marker" aria-hidden="true"></i>
+                          <span>Location</span>
+                      </a>
+                      <a href="tel:+911234567890" aria-label="Call Us">
+                          <i class="fa fa-phone" aria-hidden="true"></i>
+                          <span>Call +91 9921254779</span>
+                      </a>
+                      <a href="mailto:soham11112001@gmail.com" aria-label="Email Us">
+                          <i class="fa fa-envelope"></i>
+                          <span>soham11112001@gmail.com</span>
+                      </a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+  <!-- End info section -->
+  
+  <!-- Footer section -->
+  <footer class="footer_section">
+      <div class="container">
+          <p>&copy; <span id="displayYear"></span> All Rights Reserved By Swati Creation</p>
+      </div>
+  </footer>
+  <!-- End footer section -->
+  
+  <!-- JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/js/bootstrap.min.js"></script>
+  <script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+  
+  <script>
+      // Display current year in the footer
+      document.getElementById('displayYear').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

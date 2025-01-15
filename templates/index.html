@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<!-- Slider Section -->
+<section class="slider_section position-relative">
+    <div class="slider_bg_box">
+        <img src="{{ url_for('static', filename='images/slider-bg.jpg') }}" alt="">
+    </div>
+    <div class="container">
+        <div class="content-box">
+            <h1>
+                Best Jewellery
+                <br> Collection
+            </h1>
+            <p>
+                It is a long established fact that a reader will be distracted by the readable content of a page when
+                looking at its layout. The point of using Lorem
+            </p>
+            <div>
+                <a href="" class="slider-link">
+                    Shop Now
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Shop Section -->
+<section class="shop_section layout_padding">
+    <div class="container">
+        <div class="heading_container heading_center">
+            <h2>Latest Products</h2>
+        </div>
+        <div class="row">
+            {% for product in products %}
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="box">
+                    <a href="{{ url_for('product_detail', product_id=product.id) }}">
+                        <div class="img-box">
+                            <img src="{{ url_for('static', filename=product.image) }}" alt="{{ product.name }}">
+                        </div>
+                        <div class="detail-box">
+                            <h6>{{ product.name }}</h6>
+                            <h6>
+                                Price
+                                <span>₹{{ "%.2f"|format(product.price) }}</span>
+                            </h6>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="btn-box">
+            <a href="/shop">View All Products</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
