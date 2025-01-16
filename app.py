@@ -33,6 +33,11 @@ def index():
     products = Product.query.all()
     return render_template('index.html', products=products)
 
+@app.route('/shop')
+def shop():
+    products = Product.query.all()
+    return render_template('shop.html', products=products)
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:

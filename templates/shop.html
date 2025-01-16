@@ -1,0 +1,20 @@
+<div class="row">
+    {% for product in products %}
+    <div class="col-sm-6 col-md-4 col-lg-3">
+        <div class="box">
+            <a href="{{ url_for('product_detail', product_id=product.id) }}">
+                <div class="img-box">
+                    <img src="{{ url_for('static', filename=product.image) }}" alt="{{ product.name }}">
+                </div>
+                <div class="detail-box">
+                    <h6>{{ product.name }}</h6>
+                    <h6>
+                        Price
+                        <span>₹{{ "%.2f"|format(product.price) }}</span>
+                    </h6>
+                </div>
+            </a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
