@@ -6,8 +6,12 @@
 <!-- Slider Section -->
 <section class="slider_section position-relative">
     <div class="slider_bg_box">
-        <img src="{{ url_for('static', filename='images/slider-bg.jpg') }}" alt="">
+        <video autoplay muted loop>
+            <source src="{{ url_for('static', filename='videos/intro.mp4') }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
     </div>
+    
     <div class="container">
         <div class="content-box">
             <h1>
@@ -19,9 +23,10 @@
                 looking at its layout. The point of using Lorem
             </p>
             <div>
-                <a href="" class="slider-link">
+                <a class="slider-link" href="{{ url_for('shop') }}">
                     Shop Now
                 </a>
+                
             </div>
         </div>
     </div>

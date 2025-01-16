@@ -23,12 +23,16 @@ body {
 
 /* Header and Navigation */
 header {
-    background-color: #160e0b;
+    background-color: #4635B1;
     color: #fff;
     padding: 1rem;
     position: relative;
 }
 
+nav span{
+    color: #fff;
+    font-family: "Poppins", sans-serif;
+}
 nav ul {
     list-style-type: none;
     padding: 0;
@@ -295,10 +299,33 @@ footer a:hover {
         justify-content: center;
     }
 }
+/* Shop Section */
+.shop_section {
+    background-color: #4535b1;
+    padding: 80px 0;
+}
 
 .shop_section .heading_container {
     margin-bottom: 20px;
+    text-align: center;
+    margin-bottom: 50px;
   }
+  .heading_container h2 {
+    font-family: "Poppins", sans-serif;
+    font-size: 2.5rem;
+    color: #fff;
+    position: relative;
+    display: inline-block;
+}
+
+.heading_container h2::after {
+    content: '';
+    display: block;
+    width: 70px;
+    height: 3px;
+    background-color: #fd9c6b;
+    margin: 10px auto 0;
+}
   
   .shop_section .box {
     background-color: #eeeeee;
@@ -382,48 +409,66 @@ footer a:hover {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
-    margin-top: 15px;
+            text-align: center;
+            margin-top: 40px;
   }
   
   .shop_section .btn-box a {
     display: inline-block;
-    padding: 10px 40px;
-    background-color: #fd9c6b;
-    color: #ffffff;
-    border-radius: 5px;
-    border: 1px solid #fd9c6b;
-    -webkit-transition: all .2s;
-    transition: all .2s;
-    text-align: center;
+    padding: 12px 30px;
+    background-color:  #fd9c6b;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 30px;
+    transition: all 0.3s ease;
   }
   
   .shop_section .btn-box a:hover {
-    background-color: transparent;
-    color: #fd9c6b;
+    background-color: #f1a680 ;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(70, 53, 177, 0.3);
   }
   
   
 
   .slider_section {
-    min-height: 100vh;
-    width: 100%;
+    position: relative;
+    height: 100vh;
     display: flex;
     align-items: center;
+    overflow: hidden;
 }
 
 .slider_bg_box {
     position: absolute;
+    display: flex; /* Ensures the container can align its children */
+    justify-content: flex-end; 
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     z-index: -1;
 }
-
-.slider_bg_box img {
-    width: 100%;
-    height: 100%;
+.slider_bg_box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+    z-index: 1;
+}
+.slider_bg_box video {
+    width: 400px;
+    height: 600px;
     object-fit: cover;
+    margin-left: 10px;
+    margin-right: 10px;
+    /*border: 5px solid #dfdf0f; /* Optional border for styling */
+    border-radius: 80px; 
+    /* box-shadow: 10px 10px 10px #4635B3; */
 }
 
 .container {
@@ -438,32 +483,51 @@ footer a:hover {
 }
 
 .content-box h1 {
-    font-size: 3.5rem;
-    font-weight: bold;
-    margin-bottom: 1.5rem;
+    font-family: "Poppins", sans-serif;
+    font-size: 4rem;
+    font-weight: 700;
+    color: #4635B1;
+    margin-bottom: 1rem;
     line-height: 1.2;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s forwards 0.5s;
 }
 
 .content-box p {
     font-size: 1.1rem;
-    line-height: 1.6;
     margin-bottom: 2rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s forwards 0.7s;
+    color: #333;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .slider-link {
     display: inline-block;
-    padding: 12px 45px;
-    background-color: #ff6b00; /* Changed to orange */
-    color: white; /* Changed text to white for better contrast */
+    padding: 12px 30px;
+    background-color: #fd9c6b;
+    color: #fff;
     text-decoration: none;
-    border-radius: 5px;
     font-weight: 600;
+    border-radius: 30px;
     transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s forwards 0.9s;
 }
 
 .slider-link:hover {
-    background-color: #ff8533; /* Lighter orange on hover */
-    transform: translateY(-2px);
+    background-color: #f1a680 ;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(253, 156, 107, 0.3);
 }
 
 /* Responsive adjustments */
